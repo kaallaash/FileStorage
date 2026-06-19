@@ -1,0 +1,886 @@
+/* ========================================================
+   HW AIO - Основные стили интерфейса
+   Версия: 12.8.0
+   Дата обновления: 2026-07-20
+   ======================================================== */
+
+/* ========== АНИМАЦИИ ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+
+    to {
+        opacity: 1;
+        max-height: 500px;
+    }
+}
+
+/* ========== КОНТЕЙНЕР ОСНОВНОЙ ========== */
+#defence-changer-container {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 10000;
+    transition: transform 0.3s ease;
+}
+
+/* ========== ВКЛАДКА-ТАБ ========== */
+#defence-changer-tab {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10001;
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+    #defence-changer-tab:hover {
+        width: 50px;
+        font-size: 28px;
+    }
+
+/* ========== ПАНЕЛЬ ========== */
+#defence-changer-panel {
+    background: rgba(0,0,0,0.95);
+    padding: 15px;
+    border-radius: 10px 0 0 10px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 320px;
+    max-height: 95vh;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+    border-left: 2px solid #667eea;
+    box-shadow: -2px 2px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #333;
+}
+
+    #defence-changer-panel::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    #defence-changer-panel::-webkit-scrollbar-track {
+        background: #333;
+    }
+
+    #defence-changer-panel::-webkit-scrollbar-thumb {
+        background: #667eea;
+        border-radius: 3px;
+    }
+
+    /* ========== ХЕДЕР ========== */
+    #defence-changer-panel .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    #defence-changer-panel .panel-title {
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+        flex: 1;
+        margin: 0 10px;
+    }
+
+    /* ========== КНОПКА ЗАКРЫТИЯ ========== */
+    #defence-changer-panel .close-button {
+        color: #ff4444;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+        #defence-changer-panel .close-button:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+/* ========== КНОПКА НАСТРОЕК ========== */
+#settings-toggle-btn {
+    color: #aaa;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+    #settings-toggle-btn:hover {
+        background: #444;
+        color: #fff;
+        transform: rotate(90deg);
+    }
+
+    #settings-toggle-btn.active {
+        background: #667eea;
+        color: #fff;
+    }
+
+/* ========== БЛОК НАСТРОЕК ========== */
+#settings-content {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 5px;
+    animation: slideDown 0.3s ease;
+    overflow: hidden;
+}
+
+    #settings-content .settings-title {
+        font-size: 13px;
+        font-weight: bold;
+        color: #aaa;
+        text-align: center;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #555;
+    }
+
+/* ========== ПОЛЯ ВВОДА НАСТРОЕК ========== */
+.settings-input {
+    background: #333;
+    color: white;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+    .settings-input:focus {
+        outline: none;
+        border-color: #764ba2;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    }
+
+    .settings-input:disabled {
+        background: #222;
+        cursor: not-allowed;
+    }
+
+    .settings-input.error {
+        border-color: #f44336;
+        box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+    }
+
+/* ========== СТРОКИ НАСТРОЕК ========== */
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+    .settings-row .label {
+        color: #ccc;
+        font-size: 11px;
+    }
+
+/* ========== ЗВУКОВОЕ ОПОВЕЩЕНИЕ ========== */
+.sound-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 5px;
+    background: rgba(76, 175, 80, 0.2);
+    border-radius: 6px;
+}
+
+    .sound-row .label {
+        color: #4CAF50;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+#sound-alert-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #4CAF50;
+}
+
+/* ========== ИНФО НАСТРОЕК ========== */
+#settings-info {
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+    #settings-info.locked {
+        color: #ff9800;
+    }
+
+/* ========== КНОПКА СБРОСА НАСТРОЕК ========== */
+#reset-settings-button {
+    padding: 6px 10px;
+    background: #444;
+    color: #ccc;
+    border: 1px solid #666;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px;
+    width: 100%;
+    margin-top: 8px;
+    transition: all 0.2s;
+}
+
+    #reset-settings-button:hover:not(:disabled) {
+        background: #555;
+        color: #fff;
+    }
+
+    #reset-settings-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== РЯД КНОПОК ========== */
+.button-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* ========== КНОПКИ ОСНОВНЫЕ ========== */
+.btn-start {
+    flex: 1;
+    padding: 10px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+    .btn-start:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+
+    .btn-start:disabled {
+        background: #666;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+.btn-stop {
+    flex: 1;
+    padding: 10px 12px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: not-allowed;
+    font-weight: bold;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+    .btn-stop.active {
+        background: #f44336;
+        opacity: 1;
+        cursor: pointer;
+    }
+
+        .btn-stop.active:hover {
+            transform: scale(1.02);
+        }
+
+/* ========== ВЫБОР ПАКА ========== */
+.select-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+    .select-row .label {
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+#pack-select {
+    flex: 2;
+    padding: 8px;
+    background: #333;
+    color: white;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+    #pack-select:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== КНОПКИ ДЕЙСТВИЙ ========== */
+.btn-apply {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+    .btn-apply:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+
+    .btn-apply:disabled {
+        background: #666;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+.btn-test {
+    padding: 8px 15px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+    .btn-test:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+
+    .btn-test:disabled {
+        background: #666;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== КНОПКА ЗАГРУЗКИ ========== */
+.btn-load {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+    .btn-load:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+
+    .btn-load:disabled {
+        background: #666;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== РЯД ЗАГРУЗКИ ========== */
+.load-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+/* ========== РАЗДЕЛИТЕЛЬ ========== */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    margin: 5px 0;
+}
+
+/* ========== КНОПКА ТОГГЛА СТАТИСТИКИ ========== */
+#toggle-stats-button {
+    padding: 8px 10px;
+    background: #333;
+    color: white;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+}
+
+    #toggle-stats-button:hover {
+        background: #667eea;
+    }
+
+/* ========== БЛОК СТАТИСТИКИ ========== */
+#stats-content {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #667eea;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease;
+}
+
+    #stats-content .stats-title {
+        font-size: 13px;
+        font-weight: bold;
+        color: #667eea;
+        text-align: center;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #667eea;
+    }
+
+/* ========== РЯД СОРТИРОВКИ ========== */
+.sort-mode-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 6px;
+    flex-wrap: wrap;
+}
+
+    .sort-mode-row .label {
+        color: #aaa;
+        font-size: 10px;
+    }
+
+.sort-btn {
+    padding: 3px 10px;
+    background: #333;
+    color: #aaa;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+    .sort-btn:hover {
+        background: #555;
+        color: #fff;
+    }
+
+    .sort-btn.active-win {
+        background: #667eea;
+        color: white;
+    }
+
+    .sort-btn.active-avr {
+        background: #ff9800;
+        color: white;
+    }
+
+    .sort-btn.active-max {
+        background: #9c27b0;
+        color: white;
+    }
+
+/* ========== ТОП-5 РЕЗУЛЬТАТЫ ========== */
+#top5-results {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 30px;
+}
+
+.top5-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid #667eea;
+    font-size: 13px;
+    animation: fadeIn 0.3s ease;
+}
+
+    .top5-item.gold {
+        background: rgba(102, 126, 234, 0.3);
+        border-left-color: #4CAF50;
+    }
+
+    .top5-item .info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+    }
+
+    .top5-item .stats {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        color: white;
+    }
+
+        .top5-item .stats .min {
+            color: #ff5722;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .top5-item .stats .avr {
+            color: #FFB74D;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .top5-item .stats .max {
+            color: #4CAF50;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .top5-item .stats .win {
+            font-weight: bold;
+            font-size: 14px;
+            min-width: 60px;
+            text-align: right;
+        }
+
+    .top5-item .win-100 {
+        color: #4CAF50;
+    }
+
+    .top5-item .win-good {
+        color: #FFD700;
+    }
+
+/* ========== КНОПКА УСТАНОВКИ ИЗ ТОП-5 ========== */
+.install-from-top5 {
+    padding: 2px 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    opacity: 1;
+}
+
+    .install-from-top5:hover:not(:disabled) {
+        background: #45a049;
+        transform: scale(1.05);
+    }
+
+    .install-from-top5:disabled {
+        background: #666;
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== НЕТ ДАННЫХ ========== */
+#stats-no-data {
+    color: #aaa;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+}
+
+/* ========== ПРОГРЕСС ========== */
+.progress-container {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(102, 126, 234, 0.5);
+}
+
+#test-progress-label {
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#test-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: width 0.5s ease;
+    border-radius: 3px;
+}
+
+/* ========== КНОПКА СОХРАНЕНИЯ ПОД ТАБЛИЦЕЙ ========== */
+.save-btn-container {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(102, 126, 234, 0.3);
+    text-align: center;
+}
+
+#save-top-packs-btn {
+    padding: 6px 20px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+    #save-top-packs-btn:hover:not(:disabled) {
+        transform: scale(1.02);
+    }
+
+    #save-top-packs-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+/* ========== СТАТУС ПОДПИСКИ ========== */
+#subscription-status {
+    text-align: center;
+    font-size: 11px;
+    color: #ff9800;
+    margin-top: 3px;
+    font-weight: normal;
+}
+
+    #subscription-status.active {
+        color: #4CAF50;
+    }
+
+    #subscription-status.inactive {
+        color: #f44336;
+    }
+
+#subscription-status {
+    font-size: 11px;
+    color: #ff9800;
+    text-align: center;
+    font-weight: bold;
+}
+
+    #subscription-status.active {
+        color: #4CAF50;
+    }
+
+    #subscription-status.inactive {
+        color: #f44336;
+    }
+
+/* ========================================================
+   МОДАЛЬНОЕ ОКНО ПОДПИСКИ
+   ======================================================== */
+
+/* ========== ОВЕРЛЕЙ ========== */
+#hw-subscription-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+    /* ========== МОДАЛЬНОЕ ОКНО ========== */
+    #hw-subscription-modal .modal {
+        background: #1e1e2e;
+        border-radius: 16px;
+        padding: 35px 40px 30px;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+        border: 1px solid rgba(102, 126, 234, 0.25);
+        text-align: center;
+        animation: slideDown 0.3s ease;
+        position: relative;
+        font-family: Arial, sans-serif;
+    }
+
+    /* ========== КНОПКА ЗАКРЫТИЯ ========== */
+    #hw-subscription-modal .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        color: #888;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: bold;
+        line-height: 1;
+        font-family: Arial, sans-serif;
+    }
+
+        #hw-subscription-modal .close-btn:hover {
+            color: #fff;
+            transform: scale(1.2);
+        }
+
+    /* ========== ИКОНКА ========== */
+    #hw-subscription-modal .icon {
+        font-size: 48px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    /* ========== ЗАГОЛОВОК ========== */
+    #hw-subscription-modal .title {
+        color: #ff6b6b;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        font-family: Arial, sans-serif;
+        letter-spacing: 0.3px;
+    }
+
+    /* ========== ТЕКСТ ========== */
+    #hw-subscription-modal .text {
+        color: #d0d0d0;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+    }
+
+    /* ========== КОНТЕЙНЕР КНОПОК ========== */
+    #hw-subscription-modal .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+
+    /* ========== ССЫЛКА НА TELEGRAM ========== */
+    #hw-subscription-modal .telegram-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #0088cc, #006699);
+        color: #ffffff;
+        padding: 11px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        letter-spacing: 0.2px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+        #hw-subscription-modal .telegram-link:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 136, 204, 0.35);
+        }
+
+    /* ========== КНОПКА "ПОНЯТНО" ========== */
+    #hw-subscription-modal .ok-btn {
+        background: #3a3a4a;
+        color: #d0d0d0;
+        border: 1px solid #555;
+        border-radius: 6px;
+        padding: 10px 36px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        font-family: Arial, sans-serif;
+        letter-spacing: 0.3px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+        #hw-subscription-modal .ok-btn:hover {
+            background: #4a4a5a;
+            color: #ffffff;
+            border-color: #777;
+        }
